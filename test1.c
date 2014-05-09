@@ -16,10 +16,11 @@ int main()
 	while(fgets(line,sizeof(line),fp)!=NULL)
 	{
 		sscanf(line,"%s %d\n",temp_book,&state);
+		fseek(fp, strlen(line), SEEK_CUR);
 		if(strcmp(book,temp_book)==0)
 		{
 			// strlen(temp_book);
-			fseek(fp,0,SEEK_SET);
+			// fseek(fp,0,SEEK_SET);
 			strncpy(changeString,delete_string,strlen(line));
 			// strcpy
 			changeString[strlen(line)] = '\n';
