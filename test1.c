@@ -7,6 +7,7 @@ int main()
 	FILE *fp;
 	char line[50];
 	char temp_book[20];
+	char changeString[32];
 	int state;
 	char *delete_string="$$$$$$$$$$$$$$$$";
 	fp=fopen("test1.log","r+");
@@ -19,7 +20,11 @@ int main()
 		{
 			// strlen(temp_book);
 			fseek(fp,0,SEEK_SET);
-			fwrite(delete_string,sizeof(char),strlen(line),fp);
+			strncpy(changeString,delete_string,strlen(line));
+			// strcpy
+			changeString[strlen(line)] = '\n';
+			// changeString[strlen(line)+1] = '\0';
+			fwrite(changeString,sizeof(char),strlen(line)-1,fp);
 		}
 	}
 	fclose(fp);
