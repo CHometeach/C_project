@@ -19,7 +19,7 @@ int main()
 		if(strcmp(book,temp_book)==0)
 		{
 			// strlen(temp_book);
-			fseek(fp,0,SEEK_SET);
+			fseek(fp,0,SEEK_CUR);
 			strncpy(changeString,delete_string,strlen(line));
 			// strcpy
 			changeString[strlen(line)] = '\n';
