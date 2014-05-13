@@ -67,7 +67,27 @@ void add_book()
 }
 void remove_book()
 {
-	
+	char book[20];
+	FILE *fp;
+	char line[50];
+	char temp_book[20];
+	char changeString[32];
+	int state;
+	fp=fopen("book.log","r+");
+	printf("What book do you want to delete?\nBook's name:");
+	scanf("%s",book);
+	fseek(fp,0,SEEK_SET);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(strcmp(book,temp_book)==0)
+		{
+			sprintf(changeString, "%s %d\n", book,9);
+			fseek(fp,-strlen(line), SEEK_CUR);
+			fwrite(changeString,sizeof(char),strlen(line),fp);
+		}
+	}
+	fclose(fp);
 }
 void add_member()
 {
