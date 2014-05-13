@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXNUM 256
-#define MEMBER_FILE "member.log"
-#define BOOK_FILE "book.log"
-#define DATA_FILE "data.log"
+#define MEMBER_FILE "member.txt"
+#define BOOK_FILE "book.txt"
+#define DATA_FILE "data.txt"
 
 void add_book();
 void remove_book();
@@ -72,7 +72,7 @@ void remove_book()
 	char temp_book[20];
 	char changeString[32];
 	int state;
-	fp=fopen("book.log","r+");
+	fp=fopen(BOOK_FILE,"r+");
 	printf("What book do you want to delete?\nBook's name:");
 	scanf("%s",book);
 	fseek(fp,0,SEEK_SET);
@@ -111,7 +111,7 @@ void remove_member()
 	char temp_name[30],temp_phone[20],temp_age[10];
 	char changeString[52];
 	int state;
-	fp=fopen("member.log","r+");
+	fp=fopen(MEMBER_FILE,"r+");
 	printf("What member do you want to delete?\nMember's name:");
 	scanf("%s",member);
 	fseek(fp,0,SEEK_SET);
@@ -131,7 +131,7 @@ void member_list()
 {
 	char members;
 	FILE *fp;
-	fp=fopen(MEMBER_FILE,"a+");
+	fp=fopen(MEMBER_FILE,"r+");
 	while((members=fgetc(fp))!=EOF)
 		fputc(members,stdout);
 	fclose(fp);
@@ -140,7 +140,7 @@ void book_list()
 {
 	char books;
 	FILE *fp;
-	fp=fopen(BOOK_FILE,"a+");
+	fp=fopen(BOOK_FILE,"r+");
 	while((books=fgetc(fp))!=EOF)
 		fputc(books,stdout);
 	fclose(fp);
@@ -162,5 +162,5 @@ int main()
 		user();
 	else
 		printf("error input !!!\n");
-	system("pause");
+	return 0;
 }
