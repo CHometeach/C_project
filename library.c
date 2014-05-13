@@ -5,7 +5,7 @@
 #define BOOK_FILE "book.txt"
 #define DATA_FILE "data.txt"
 
-void add_book();
+int add_book();
 void remove_book();
 void add_member();
 void remove_member();
@@ -24,7 +24,7 @@ struct BOOK
 	int state;
 }books[500];
 
-void admin()
+int admin()
 {
 	int choice;
 	printf("What function do you want?\n(1)add book\n(2)remove book\n(3)add member\n(4)remove member\n(5)member list\n(6)book list\n(7)exit\n");
@@ -52,8 +52,9 @@ void admin()
 		case 7:
 			exit(0);	
 	}
+	return 1;
 }
-void add_book()
+int add_book()
 {
 	char books_temp_name[50],books_temp_log[60];
 	FILE *fp;
@@ -63,6 +64,7 @@ void add_book()
 	sprintf(books_temp_log,"%s 1\n",books_temp_name);
 	fwrite(books_temp_log,sizeof(char),sizeof(books_temp_log),fp);
 	fclose(fp);
+	return 1;
 }
 void remove_book()
 {
@@ -162,5 +164,6 @@ int main()
 		user();
 	else
 		printf("error input !!!\n");
+	// system("pause");
 	return 0;
 }
