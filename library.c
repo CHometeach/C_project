@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define MAXNUM 256
 #define MEMBER_FILE "member.txt"
 #define BOOK_FILE "book.txt"
@@ -62,7 +63,7 @@ int add_book()
 	printf("What book do you want to add?\nBook's name:");
 	scanf("%s",books_temp_name);	
 	sprintf(books_temp_log,"%s 1\n",books_temp_name);
-	fwrite(books_temp_log,sizeof(char),sizeof(books_temp_log),fp);
+	fwrite(books_temp_log,sizeof(char),strlen(books_temp_log),fp);
 	fclose(fp);
 	return 1;
 }
@@ -74,7 +75,11 @@ void remove_book()
 	char temp_book[20];
 	char changeString[32];
 	int state;
-	fp=fopen(BOOK_FILE,"r+");
+	if(fp=fopen(BOOK_FILE,"r+")==NULL)
+	{
+		printf("No book\n");
+		exit(0);
+	}	
 	printf("What book do you want to delete?\nBook's name:");
 	scanf("%s",book);
 	fseek(fp,0,SEEK_SET);
@@ -102,7 +107,7 @@ void add_member()
 	printf("Member's phone:");
 	scanf("%s",members_temp_phone);
 	sprintf(members_temp_log,"%s %s %s %d\n",members_temp_name,members_temp_age,members_temp_phone,1);
-	fwrite(members_temp_log,sizeof(char),sizeof(members_temp_log),fp);
+	fwrite(members_temp_log,sizeof(char),strlen(members_temp_log),fp);
 	fclose(fp);
 }
 void remove_member()
@@ -113,7 +118,11 @@ void remove_member()
 	char temp_name[30],temp_phone[20],temp_age[10];
 	char changeString[52];
 	int state;
-	fp=fopen(MEMBER_FILE,"r+");
+	if(fp=fopen(MEMBER_FILE,"r+")==NULL)
+	{
+		printf("No member\n");
+		exit(0);
+	}	
 	printf("What member do you want to delete?\nMember's name:");
 	scanf("%s",member);
 	fseek(fp,0,SEEK_SET);
@@ -158,12 +167,17 @@ int main()
 	int mode;
 	printf("Who are you?\n(1)admin(2)user\n");
 	scanf("%d",&mode);
-	if(mode==1)
-		admin();
-	else if(mode==2)
-		user();
-	else
-		printf("error input !!!\n");
-	// system("pause");
+    while()
+    {
+		if(mode==1)
+			admin();
+		else if(mode==2)
+			user();
+		else
+		{
+			printf("error input !!!\n");
+			break;
+		}	
+	}
 	return 0;
 }
