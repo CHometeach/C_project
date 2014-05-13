@@ -50,8 +50,7 @@ void admin()
 			book_list();
 			break;
 		case 7:
-			exit(0);
-	system("pause");	
+			exit(0);	
 	}
 }
 void add_book()
