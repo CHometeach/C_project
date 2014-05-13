@@ -9,7 +9,7 @@ int main()
 	char temp_book[20];
 	char changeString[32];
 	int state;
-	char *delete_string="$$$$$$$$$$$$$$$$";
+	char *delete_string="$$$$$$$$$$$$";
 	fp=fopen("test1.log","r+");
 	scanf("%s",book);
 	fseek(fp,0,SEEK_SET);
