@@ -82,8 +82,8 @@ void remove_book()
 		sscanf(line,"%s %d\n",temp_book,&state);
 		if(strcmp(book,temp_book)==0)
 		{
-			sprintf(changeString, "%s %d\n", book,9);
-			fseek(fp,-strlen(line), SEEK_CUR);
+			sprintf(changeString,"%s %d\n",book,9);
+			fseek(fp,-strlen(line),SEEK_CUR);
 			fwrite(changeString,sizeof(char),strlen(line),fp);
 		}
 	}
@@ -91,7 +91,7 @@ void remove_book()
 }
 void add_member()
 {
-	char members_temp_name[50],members_temp_age[20],members_temp_phone[30],members_temp_log[60];
+	char members_temp_name[50],members_temp_age[10],members_temp_phone[30],members_temp_log[60];
 	FILE *fp;
 	fp=fopen(MEMBER_FILE,"a+");
 	printf("What member do you want to add?\nMember's name:");
@@ -100,13 +100,33 @@ void add_member()
 	scanf("%s",members_temp_age);
 	printf("Member's phone:");
 	scanf("%s",members_temp_phone);
-	sprintf(members_temp_log,"%s %s %s",members_temp_name,members_temp_age,members_temp_phone);
+	sprintf(members_temp_log,"%s %s %s %d\n",members_temp_name,members_temp_age,members_temp_phone,1);
 	fwrite(members_temp_log,sizeof(char),sizeof(members_temp_log),fp);
 	fclose(fp);
 }
-void remove_book()
+void remove_member()
 {
-	
+	char member[30];
+	FILE *fp;
+	char line[50];
+	char temp_name[30],temp_phone[20],temp_age[10];
+	char changeString[52];
+	int state;
+	fp=fopen("member.log","r+");
+	printf("What member do you want to delete?\nMember's name:");
+	scanf("%s",member);
+	fseek(fp,0,SEEK_SET);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %s %s %d\n",temp_name,temp_age,temp_phone,&state);
+		if(strcmp(member,temp_name)==0)
+		{
+			sprintf(changeString, "%s %s %s %d\n",temp_name,temp_age,temp_phone,9);
+			fseek(fp,-strlen(line),SEEK_CUR);
+			fwrite(changeString,sizeof(char),strlen(line),fp);
+		}
+	}
+	fclose(fp);
 }
 void member_list()
 {
