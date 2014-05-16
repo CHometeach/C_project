@@ -1,2 +1,8 @@
 Math 9
 Chinese 1
+Sony 9
+Tower 1
+ABC 1
+CBA 9
+XYZ 9
+Debug 1
