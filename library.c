@@ -59,9 +59,11 @@ int add_book()
 {
 	char books_temp_name[50],books_temp_log[60],books;
 	FILE *fp;
+	FILE *fp2;
 	fp=fopen(BOOK_FILE,"a+");
+	fp2=fopen(BOOK_FILE,"r+");
 	printf("now book list:\n###############\n");
-	while((books=fgetc(fp))!=EOF)
+	while((books=fgetc(fp2))!=EOF)
 		fputc(books,stdout);
 	printf("###############\n");
 	printf("What book do you want to add?\nBook's name:");
@@ -69,6 +71,7 @@ int add_book()
 	sprintf(books_temp_log,"%s 1\n",books_temp_name);
 	fwrite(books_temp_log,sizeof(char),strlen(books_temp_log),fp);
 	fclose(fp);
+	fclose(fp2);
 	return 1;
 }
 void remove_book()
@@ -107,9 +110,11 @@ void add_member()
 {
 	char members_temp_name[50],members_temp_age[10],members_temp_phone[30],members_temp_log[60],members;
 	FILE *fp;
+	FILE *fp2;
 	fp=fopen(MEMBER_FILE,"a+");
+	fp2=fopen(MEMBER_FILE,"r+");
 	printf("now member list:\n###############\n");
-	while((members=fgetc(fp))!=EOF)
+	while((members=fgetc(fp2))!=EOF)
 		fputc(members,stdout);
 	printf("###############\n");
 	printf("What member do you want to add?\nMember's name:");
@@ -121,6 +126,7 @@ void add_member()
 	sprintf(members_temp_log,"%s %s %s %d\n",members_temp_name,members_temp_age,members_temp_phone,1);
 	fwrite(members_temp_log,sizeof(char),strlen(members_temp_log),fp);
 	fclose(fp);
+	fclose(fp2);
 }
 void remove_member()
 {
