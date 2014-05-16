@@ -57,9 +57,13 @@ int admin()
 }
 int add_book()
 {
-	char books_temp_name[50],books_temp_log[60];
+	char books_temp_name[50],books_temp_log[60],books;
 	FILE *fp;
 	fp=fopen(BOOK_FILE,"a+");
+	printf("now book list:\n###############\n");
+	while((books=fgetc(fp))!=EOF)
+		fputc(books,stdout);
+	printf("###############\n");
 	printf("What book do you want to add?\nBook's name:");
 	scanf("%s",books_temp_name);	
 	sprintf(books_temp_log,"%s 1\n",books_temp_name);
@@ -69,17 +73,21 @@ int add_book()
 }
 void remove_book()
 {
-	char book[20];
+	char book[20],books;
 	FILE *fp;
 	char line[50];
 	char temp_book[20];
 	char changeString[32];
 	int state;
-	if(fp=fopen(BOOK_FILE,"r+")==NULL)
+	if((fp=fopen(BOOK_FILE,"r+"))==NULL)
 	{
 		printf("No book\n");
 		exit(0);
-	}	
+	}
+	printf("now book list:\n###############\n");
+	while((books=fgetc(fp))!=EOF)
+		fputc(books,stdout);
+	printf("###############\n");
 	printf("What book do you want to delete?\nBook's name:");
 	scanf("%s",book);
 	fseek(fp,0,SEEK_SET);
@@ -97,9 +105,13 @@ void remove_book()
 }
 void add_member()
 {
-	char members_temp_name[50],members_temp_age[10],members_temp_phone[30],members_temp_log[60];
+	char members_temp_name[50],members_temp_age[10],members_temp_phone[30],members_temp_log[60],members;
 	FILE *fp;
 	fp=fopen(MEMBER_FILE,"a+");
+	printf("now member list:\n###############\n");
+	while((members=fgetc(fp))!=EOF)
+		fputc(members,stdout);
+	printf("###############\n");
 	printf("What member do you want to add?\nMember's name:");
 	scanf("%s",members_temp_name);
 	printf("Member's age:");
@@ -112,17 +124,21 @@ void add_member()
 }
 void remove_member()
 {
-	char member[30];
+	char member[30],members;
 	FILE *fp;
 	char line[50];
 	char temp_name[30],temp_phone[20],temp_age[10];
 	char changeString[52];
 	int state;
-	if(fp=fopen(MEMBER_FILE,"r+")==NULL)
+	if((fp=fopen(MEMBER_FILE,"r+"))==NULL)
 	{
 		printf("No member\n");
 		exit(0);
 	}	
+	printf("now member list:\n###############\n");
+	while((members=fgetc(fp))!=EOF)
+		fputc(members,stdout);
+	printf("###############\n");
 	printf("What member do you want to delete?\nMember's name:");
 	scanf("%s",member);
 	fseek(fp,0,SEEK_SET);
@@ -167,7 +183,7 @@ int main()
 	int mode;
 	printf("Who are you?\n(1)admin(2)user\n");
 	scanf("%d",&mode);
-    while()
+    while(1)
     {
 		if(mode==1)
 			admin();
