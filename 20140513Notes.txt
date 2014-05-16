@@ -1,0 +1,25 @@
+Unix & C Course Notes.	
+2014/5/13
+
+1. 繼續圖書館進度
+	
+	(a)完成add_book()
+
+		把被刪掉的書的state改成9，可租借的state為1，租借中的state為0
+
+	(b)完成add_member()
+	
+		把被刪掉的成員的state改成9，正常的成員state為1
+
+	(c)完成remove_book()
+
+
+	
+	(d)完成remove_member()
+
+
+	(e)複習修正git版本間的CONFLICT.
+
+2. 回家小作業
+
+	想一下如果remove_book或remove_member，查無此書或成員，那要怎麼檢查？
