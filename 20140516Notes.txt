@@ -1,0 +1,9 @@
+Unix & C Course Notes.	
+2014/5/16
+
+1. 繼續圖書館進度
+	
+	(a)增加remove_book(),add_book(),add_member(),remove_member()功能
+
+		現在會即時列出目前書單和成員名單，方便user查看要增加(刪除)哪些書，或增加(刪除)哪些會員。
+	

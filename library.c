@@ -78,6 +78,7 @@ void remove_book()
 {
 	char book[20],books;
 	FILE *fp;
+	// FILE *fp2;
 	char line[50];
 	char temp_book[20];
 	char changeString[32];
@@ -87,6 +88,7 @@ void remove_book()
 		printf("No book\n");
 		exit(0);
 	}
+	// fp2 = fopen(BOOK_FILE,"a+");
 	printf("now book list:\n###############\n");
 	while((books=fgetc(fp))!=EOF)
 		fputc(books,stdout);
@@ -105,6 +107,7 @@ void remove_book()
 		}
 	}
 	fclose(fp);
+	// fclose(fp2);
 }
 void add_member()
 {
