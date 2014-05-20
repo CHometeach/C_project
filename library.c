@@ -87,7 +87,7 @@ int add_book()
 }
 void remove_book()
 {
-	char book[20],books;
+	char book[20];
 	FILE *fp;
 	// FILE *fp2;
 	char line[50];
@@ -125,6 +125,8 @@ void remove_book()
 			fwrite(changeString,sizeof(char),strlen(line),fp);
 		}
 	}
+	printf("****delete success!****\n");
+	sleep(2);
 	fclose(fp);
 	// fclose(fp2);
 }
@@ -157,12 +159,13 @@ void add_member()
 	sprintf(members_temp_log,"%s %s %s %d\n",members_temp_name,members_temp_age,members_temp_phone,1);
 	fwrite(members_temp_log,sizeof(char),strlen(members_temp_log),fp);
 	printf("****Add success!****\n");
+	sleep(2);
 	fclose(fp);
 	fclose(fp2);
 }
 void remove_member()
 {
-	char member[30],members;
+	char member[30];
 	FILE *fp;
 	char line[50];
 	char temp_name[30],temp_phone[20],temp_age[10];
@@ -196,6 +199,8 @@ void remove_member()
 			fwrite(changeString,sizeof(char),strlen(line),fp);
 		}
 	}
+	printf("****delete success!****\n");
+	sleep(2);
 	fclose(fp);
 }
 void member_list()
@@ -239,9 +244,66 @@ void book_list()
 	fclose(fp);
 }
 
-void user()
+void borrow_book()
 {
-		
+	char book[20];
+	FILE *fp;
+	char line[50];
+	char temp_book[20];
+	char changeString[32];
+	int state;
+	fp=fopen(BOOK_FILE,"r+");
+	printf("now book list:\n###############\n");
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
+	printf("###############\n");
+	printf("Which book do you want to borrow?\nBook's name:");
+	scanf("%s",book);
+	fseek(fp,0,SEEK_SET);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(strcmp(book,temp_book)==0)
+		{
+			sprintf(changeString,"%s %d\n",book,0);
+			fseek(fp,-strlen(line),SEEK_CUR);
+			fwrite(changeString,sizeof(char),strlen(line),fp);
+		}
+	}
+	printf("****Borrow success!****\n");
+	sleep(2);
+	fclose(fp);
+}
+
+int user()
+{
+	int choice;
+	printf("What function do you want?\n(1)borrow book\n(2)return book\n(3)search book\n(4)book list\n(5)exit\n");
+	scanf("%d",&choice);
+	switch(choice)
+	{
+		case 1:
+			borrow_book();
+			break;
+		case 2:
+			//return_book();
+			break;
+		case 3:
+			//search_book();
+			break;
+		case 4:
+			book_list();
+			break;
+		case 5:
+			exit(0);	
+	}
+	return 2;
 }
 
 int main()
