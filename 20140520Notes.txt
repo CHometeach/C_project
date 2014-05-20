@@ -1,0 +1,28 @@
+Unix & C Course Notes.	
+2014/5/20
+
+1. 繼續圖書館進度
+	
+	(a)完成管理員(admin)的所有內建功能。
+
+	(b)完成普通使用者(user)的borrow_book()
+
+2. 提問額外補充
+
+	(a)torrent是什麼?
+
+		參考連結：http://zh.wikipedia.org/wiki/Torrent
+
+		P2P
+
+3. 回家小作業
+
+	把user的return_book()預習或是直接完成
+
+4. 下次預告
+
+	(a)利用C++介紹物件導向(OOP)觀念
+	
+		
+
+
