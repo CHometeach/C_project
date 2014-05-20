@@ -68,7 +68,7 @@ int add_book()
 	fp=fopen(BOOK_FILE,"a+");
 	fp2=fopen(BOOK_FILE,"r+");
 	printf("now book list:\n###############\n");
-	while(fgets(line,sizeof(line),fp)!=NULL)
+	while(fgets(line,sizeof(line),fp2)!=NULL)
 	{
 		sscanf(line,"%s %d\n",temp_book,&state);
 		if(state!=9)
@@ -141,7 +141,7 @@ void add_member()
 	fp=fopen(MEMBER_FILE,"a+");
 	fp2=fopen(MEMBER_FILE,"r+");
 	printf("now member list:\n###############\n");
-	while(fgets(line,sizeof(line),fp)!=NULL)
+	while(fgets(line,sizeof(line),fp2)!=NULL)
 	{
 		sscanf(line,"%s %s %s %d\n",temp_name,temp_age,temp_phone,&state);
 		if(state!=9)
