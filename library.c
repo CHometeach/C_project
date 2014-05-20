@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+// #include <iostream>
 #define MAXNUM 256
 #define MEMBER_FILE "member.txt"
 #define BOOK_FILE "book.txt"
