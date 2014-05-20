@@ -3,30 +3,26 @@ Unix & C Course Notes.
 
 1. 繼續圖書館進度
 	
-	(a)增加remove_book(),add_book(),add_member(),remove_member()功能
+	(a)完成管理員(admin)的所有內建功能。
 
-		現在會即時列出目前書單和成員名單，方便user查看要增加(刪除)哪些書，或增加(刪除)哪些會員。
+	(b)完成普通使用者(user)的borrow_book()
 
-	(b)修正已刪除的不會被列出來的bug
+2. 提問額外補充
 
-		判斷state是否為9，若不是則不印。
+	(a)torrent是什麼?
 
+		參考連結：http://zh.wikipedia.org/wiki/Torrent
 
-2. 複習撰寫Makefile
-
-	all:library.c
-		gcc library.c -o library
-	clean:
-		rm -f library
+		P2P
 
 3. 回家小作業
 
-	把remove_member()會印出已刪除的成員的錯誤修正掉。
+	把user的return_book()預習或是直接完成
 
 4. 下次預告
 
-	(a)給使用者回饋執行正確的訊息
-	(b)重複增加書或成員要怎麼處理？
+	(a)利用C++介紹物件導向(OOP)觀念
+	
 		
 
 
