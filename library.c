@@ -58,13 +58,22 @@ int admin()
 int add_book()
 {
 	char books_temp_name[50],books_temp_log[60],books;
+	char line[50];
+	char temp_book[20];
+	int state;
 	FILE *fp;
 	FILE *fp2;
 	fp=fopen(BOOK_FILE,"a+");
 	fp2=fopen(BOOK_FILE,"r+");
 	printf("now book list:\n###############\n");
-	while((books=fgetc(fp2))!=EOF)
-		fputc(books,stdout);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
 	printf("###############\n");
 	printf("What book do you want to add?\nBook's name:");
 	scanf("%s",books_temp_name);	
@@ -122,13 +131,22 @@ void remove_book()
 void add_member()
 {
 	char members_temp_name[50],members_temp_age[10],members_temp_phone[30],members_temp_log[60],members;
+	char line[50];
+	char temp_name[30],temp_phone[20],temp_age[10];
+	int state;
 	FILE *fp;
 	FILE *fp2;
 	fp=fopen(MEMBER_FILE,"a+");
 	fp2=fopen(MEMBER_FILE,"r+");
 	printf("now member list:\n###############\n");
-	while((members=fgetc(fp2))!=EOF)
-		fputc(members,stdout);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %s %s %d\n",temp_name,temp_age,temp_phone,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
 	printf("###############\n");
 	printf("What member do you want to add?\nMember's name:");
 	scanf("%s",members_temp_name);
@@ -183,22 +201,40 @@ void remove_member()
 void member_list()
 {
 	char members;
+	char line[50];
+	char temp_name[30],temp_phone[20],temp_age[10];
+	int state;
 	FILE *fp;
 	fp=fopen(MEMBER_FILE,"r+");
 	printf("now member list:\n###############\n");
-	while((members=fgetc(fp))!=EOF)
-		fputc(members,stdout);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %s %s %d\n",temp_name,temp_age,temp_phone,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
 	printf("###############\n");
 	fclose(fp);
 }
 void book_list()
 {
 	char books;
+	char line[50];
+	char temp_book[20];
+	int state;
 	FILE *fp;
 	fp=fopen(BOOK_FILE,"r+");
 	printf("now book list:\n###############\n");
-	while((books=fgetc(fp))!=EOF)
-		fputc(books,stdout);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
 	printf("###############\n");
 	fclose(fp);
 }
