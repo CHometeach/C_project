@@ -5,4 +5,7 @@ Tower 1
 ABC 1
 CBA 9
 XYZ 9
-Debug 1
+Debug 9
+IIKK 1
+OOPP 1
+EEEE 1

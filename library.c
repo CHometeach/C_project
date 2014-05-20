@@ -70,6 +70,8 @@ int add_book()
 	scanf("%s",books_temp_name);	
 	sprintf(books_temp_log,"%s 1\n",books_temp_name);
 	fwrite(books_temp_log,sizeof(char),strlen(books_temp_log),fp);
+	printf("****Add success!****\n");
+	sleep(2);
 	fclose(fp);
 	fclose(fp2);
 	return 1;
@@ -90,8 +92,16 @@ void remove_book()
 	}
 	// fp2 = fopen(BOOK_FILE,"a+");
 	printf("now book list:\n###############\n");
-	while((books=fgetc(fp))!=EOF)
-		fputc(books,stdout);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
+	//while((books=fgetc(fp))!=EOF)
+		//fputc(books,stdout);
 	printf("###############\n");
 	printf("What book do you want to delete?\nBook's name:");
 	scanf("%s",book);
@@ -128,6 +138,7 @@ void add_member()
 	scanf("%s",members_temp_phone);
 	sprintf(members_temp_log,"%s %s %s %d\n",members_temp_name,members_temp_age,members_temp_phone,1);
 	fwrite(members_temp_log,sizeof(char),strlen(members_temp_log),fp);
+	printf("****Add success!****\n");
 	fclose(fp);
 	fclose(fp2);
 }
@@ -145,8 +156,14 @@ void remove_member()
 		exit(0);
 	}	
 	printf("now member list:\n###############\n");
-	while((members=fgetc(fp))!=EOF)
-		fputc(members,stdout);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %s %s %d\n",temp_name,temp_age,temp_phone,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
 	printf("###############\n");
 	printf("What member do you want to delete?\nMember's name:");
 	scanf("%s",member);
@@ -168,8 +185,10 @@ void member_list()
 	char members;
 	FILE *fp;
 	fp=fopen(MEMBER_FILE,"r+");
+	printf("now member list:\n###############\n");
 	while((members=fgetc(fp))!=EOF)
 		fputc(members,stdout);
+	printf("###############\n");
 	fclose(fp);
 }
 void book_list()
@@ -177,8 +196,10 @@ void book_list()
 	char books;
 	FILE *fp;
 	fp=fopen(BOOK_FILE,"r+");
+	printf("now book list:\n###############\n");
 	while((books=fgetc(fp))!=EOF)
 		fputc(books,stdout);
+	printf("###############\n");
 	fclose(fp);
 }
 
