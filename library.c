@@ -282,6 +282,42 @@ void borrow_book()
 	sleep(2);
 	fclose(fp);
 }
+void return_book()
+{
+	char book[20];
+	FILE *fp;
+	char line[50];
+	char temp_book[20];
+	char changeString[32];
+	int state;
+	fp=fopen(BOOK_FILE,"r+");
+	printf("now book list:\n###############\n");
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(state!=9)
+		{
+			printf("%s",line);
+		}
+	}
+	printf("###############\n");
+	printf("Which book do you want to return?\nBook's name:");
+	scanf("%s",book);
+	fseek(fp,0,SEEK_SET);
+	while(fgets(line,sizeof(line),fp)!=NULL)
+	{
+		sscanf(line,"%s %d\n",temp_book,&state);
+		if(strcmp(book,temp_book)==0)
+		{
+			sprintf(changeString,"%s %d\n",book,ㄅ);
+			fseek(fp,-strlen(line),SEEK_CUR);
+			fwrite(changeString,sizeof(char),strlen(line),fp);
+		}
+	}
+	printf("****Return success!****\n");
+	sleep(2);
+	fclose(fp);
+}
 
 int user()
 {
@@ -294,10 +330,10 @@ int user()
 			borrow_book();
 			break;
 		case 2:
-			//return_book();
+			return_book();
 			break;
 		case 3:
-			//search_book();
+			search_book();
 			break;
 		case 4:
 			book_list();
